@@ -11,12 +11,13 @@ const options: Options = {
   password: config.postgresDb.password,
   database: config.postgresDb.database,
   logger: 'advanced-console',
+
   cli: {
     entitiesDir: './src/database/entities',
     migrationsDir: './src/database/migrations',
   },
-  entities: [`${__dirname}/entities/*{.js,.ts}`],
-  migrations: [`${__dirname}/migrations/*{.js,.ts}`],
+  entities: [`${__dirname}/entities/*.ts`],
+  migrations: [`${__dirname}/migrations/*.ts`],
   synchronize: false,
   logging: false,
   seeds: ['./src/database/seeds/**/*{.ts,.js}'],
