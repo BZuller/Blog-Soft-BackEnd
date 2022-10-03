@@ -1,5 +1,5 @@
-import IPost from '../../interfaces/IPost';
+import ICreatePostDTO from '../../services/Posts/createPostService/ICreatePostRequestDTO';
 
 export default interface IPostRepository {
-  create(post: IPost): Promise<string | undefined>;
+  createPost(post: ICreatePostDTO): Promise<string | undefined>;
 }

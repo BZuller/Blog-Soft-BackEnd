@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -5,14 +6,14 @@ import {
   Entity,
   Column,
   ManyToOne,
+  OneToMany,
 } from 'typeorm';
-import Categories from '../../enums/Categories';
-import IPost from '../../interfaces/IPost';
-// eslint-disable-next-line import/no-cycle
+import IPostModel from '../../models/IPostModel';
+import Categories from './Categories.Entity';
 import User from './User.Entity';
 
 @Entity('posts')
-export default class Post implements IPost {
+export default class Post implements IPostModel {
   @PrimaryGeneratedColumn('uuid')
   public id: string;
 
@@ -20,20 +21,13 @@ export default class Post implements IPost {
   title: string;
 
   @Column()
-  autor: string;
-
-  @ManyToOne(() => User, (user) => user.name)
-  public author: User;
-
-  @Column()
   content: string;
 
-  @Column({
-    type: 'enum',
-    enum: ['ANIME', 'MUSIC', 'GAMES', 'MOVIES'],
-    default: '',
-  })
-  categorie?: Categories | undefined;
+  @OneToMany(() => Categories, (categories) => categories.posts)
+  categorie: Categories;
+
+  @ManyToOne(() => User, (user) => user.posts)
+  public author: User;
 
   @CreateDateColumn()
   public created_at: Date;

@@ -1,20 +1,20 @@
 import { hash } from 'bcrypt';
-import { getCustomRepository } from 'typeorm';
-import UserRepository from '../../../repositories/implementations/UserRepository';
+import IUserRepository from '../../../repositories/interfaces/IUserRepository';
 import ApiError from '../../../utils/apiError.utils';
-import ICreateUserDTO from './ICreateUserDTO';
+import ICreateUserDTO from './ICreateUserRequestDTO';
 
 export default class CreateUserService {
-  public async execute(user: ICreateUserDTO): Promise<string | undefined> {
-    const { name, email, username, role } = user;
-    const repository = getCustomRepository(UserRepository);
-    const userExists = await repository.findByEmail(email);
-    const hashedPassword = await hash(user.password, 8);
+  constructor(private userRepository: IUserRepository) {}
+
+  public async execute(data: ICreateUserDTO): Promise<string | undefined> {
+    const { name, email, username, role } = data;
+    const userExists = await this.userRepository.findByEmail(email);
+    const hashedPassword = await hash(data.password, 8);
 
     if (userExists) {
       throw new ApiError(422, true, 'User already exists');
     }
-    const newUser = repository.create({
+    const newUser = this.userRepository.createUser({
       name,
       email,
       username,

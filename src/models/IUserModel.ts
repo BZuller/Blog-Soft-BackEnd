@@ -2,7 +2,7 @@
 import Post from '../database/entities/Post.Entity';
 import UserRole from '../enums/UserRoles';
 
-export default interface IUser {
+export default interface IUserModel {
   id: string;
   name: string;
   email: string;
@@ -10,4 +10,6 @@ export default interface IUser {
   password: string;
   role: UserRole;
   posts?: Post[];
+  created_at?: Date;
+  updated_at?: Date;
 }

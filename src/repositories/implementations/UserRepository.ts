@@ -1,22 +1,22 @@
 import { EntityRepository, getRepository } from 'typeorm';
 import User from '../../database/entities/User.Entity';
-import ICreateUserDTO from '../../services/User/createUserService/ICreateUserDTO';
+import ICreateUserDTO from '../../services/User/createUserService/ICreateUserRequestDTO';
 import IUserRepository from '../interfaces/IUserRepository';
 
 @EntityRepository(User)
 export default class UserRepository implements IUserRepository {
-  private repository = getRepository(User);
+  async createUser(user: ICreateUserDTO): Promise<string | undefined> {
+    const repository = getRepository(User);
+    const newUser = repository.create(user);
 
-  async create(user: ICreateUserDTO): Promise<string | undefined> {
-    const newUser = this.repository.create(user);
-
-    await this.repository.save(newUser);
+    await repository.save(newUser);
 
     return newUser.id;
   }
 
   public async findById(id: string): Promise<User | undefined> {
-    const user = await this.repository.findOne({
+    const repository = getRepository(User);
+    const user = await repository.findOne({
       where: {
         id,
       },
@@ -26,7 +26,8 @@ export default class UserRepository implements IUserRepository {
   }
 
   public async findByEmail(email: string): Promise<User | undefined> {
-    const user = await this.repository.findOne({
+    const repository = getRepository(User);
+    const user = await repository.findOne({
       where: {
         email,
       },
@@ -36,7 +37,8 @@ export default class UserRepository implements IUserRepository {
   }
 
   public async findByRole(role: string): Promise<User | undefined> {
-    const user = await this.repository.findOne({
+    const repository = getRepository(User);
+    const user = await repository.findOne({
       where: {
         role,
       },

@@ -10,6 +10,7 @@ export class Post1664589384794 implements MigrationInterface {
             name: 'id',
             type: 'uuid',
             isPrimary: true,
+            isUnique: true,
             generationStrategy: 'uuid',
             default: 'uuid_generate_v4()',
           },
@@ -18,16 +19,16 @@ export class Post1664589384794 implements MigrationInterface {
             type: 'varchar',
           },
           {
-            name: 'autor',
-            type: 'varchar',
+            name: 'authorId',
+            type: 'uuid',
           },
           {
             name: 'content',
             type: 'varchar',
           },
           {
-            name: 'categorie',
-            type: 'varchar',
+            name: 'categorieId',
+            type: 'uuid',
           },
           {
             name: 'created_at',

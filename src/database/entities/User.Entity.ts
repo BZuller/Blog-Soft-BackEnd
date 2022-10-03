@@ -7,12 +7,13 @@ import {
   OneToMany,
 } from 'typeorm';
 import UserRole from '../../enums/UserRoles';
-import IUser from '../../interfaces/IUser';
+// eslint-disable-next-line import/no-cycle
+import IUserModel from '../../models/IUserModel';
 // eslint-disable-next-line import/no-cycle
 import Post from './Post.Entity';
 
 @Entity('users')
-export default class User implements IUser {
+export default class User implements IUserModel {
   @PrimaryGeneratedColumn('uuid')
   public id: string;
 
@@ -35,12 +36,12 @@ export default class User implements IUser {
   })
   role: UserRole;
 
-  @OneToMany(() => Post, (post) => post.author)
-  post: Post;
+  @OneToMany(() => Post, (posts) => posts.author)
+  posts?: Post[];
 
   @CreateDateColumn()
-  public created_at: Date;
+  public created_at?: Date;
 
   @UpdateDateColumn()
-  public updated_at: Date;
+  public updated_at?: Date;
 }
