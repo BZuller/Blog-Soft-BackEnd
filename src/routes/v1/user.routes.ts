@@ -32,6 +32,8 @@ const userRepository = new UserRepository();
 const createUserService = new CreateUserService(userRepository);
 const userController = new UserController(createUserService);
 
-routes.route('/').post(userController.createUserHandler);
+routes
+  .route('/')
+  .post((req, res, next) => userController.createUserHandler(req, res, next));
 
 export default routes;

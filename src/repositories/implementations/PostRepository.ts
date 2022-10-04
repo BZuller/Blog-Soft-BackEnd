@@ -1,43 +1,60 @@
 import { EntityRepository, getRepository } from 'typeorm';
+import Categories from '../../database/entities/Categories.Entity';
 import Post from '../../database/entities/Post.Entity';
 import User from '../../database/entities/User.Entity';
-import IPostModel from '../../models/IPostModel';
+import ICreatePostDTO from '../../services/Posts/createPostService/ICreatePostRequestDTO';
 import ApiError from '../../utils/apiError.utils';
 import IPostRepository from '../interfaces/IPostRepository';
 
 @EntityRepository(Post)
 export default class PostRepository implements IPostRepository {
-  private postRepository = getRepository(Post);
+  async createPost(post: ICreatePostDTO): Promise<string | undefined> {
+    const postRepository = getRepository(Post);
+    const categorieRepository = getRepository(Categories);
+    const userRepository = getRepository(User);
 
-  private userRepository = getRepository(User);
+    const { title, authorId, content, categorieId } = post;
 
-  async createPost(post: IPostModel): Promise<string | undefined> {
-    const { title, authorId, content, categorie } = post;
-    const user = await this.userRepository.findOne({ id: authorId });
+    const categorie = await categorieRepository.findOne({
+      id: categorieId,
+    });
+    if (!categorie) {
+      throw new Error('Api Error');
+    }
+
+    const user = await userRepository.findOne({ id: authorId });
     if (!user) {
       throw new Error('Api Error');
     }
-    const newPost = this.postRepository.create({
+
+    const newPost = postRepository.create({
       title,
       author: user,
       content,
       categorie,
     });
-
-    await this.postRepository.save(newPost);
+    await postRepository.save(newPost);
 
     return newPost.id;
   }
 
   async deletePost(id: string): Promise<Post | null> {
-    const post = await this.postRepository.findOne(id);
+    const postRepository = getRepository(Post);
+    const post = await postRepository.findOne(id);
 
     if (!post) {
       throw new ApiError(404, true, 'User not found');
     }
 
-    await this.postRepository.remove(post);
+    await postRepository.remove(post);
 
     return post;
+  }
+
+  async findPosts(): Promise<Post[]> {
+    const postRepository = getRepository(Post);
+    const postsList = await postRepository.find();
+
+    return postsList;
   }
 }

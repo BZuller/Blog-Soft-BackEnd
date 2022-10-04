@@ -6,7 +6,7 @@ export default interface IPostModel {
   title: string;
   authorId?: string;
   content: string;
-  categorie?: Categories;
+  categorieId?: Categories;
   created_at?: Date;
   updated_at?: Date;
 }

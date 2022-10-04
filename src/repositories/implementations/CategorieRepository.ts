@@ -15,4 +15,15 @@ export default class CategoriesRepository implements ICategorieRepository {
 
     return newCategorie.id;
   }
+
+  public async findById(id: string): Promise<Categories | undefined> {
+    const repository = getRepository(Categories);
+    const categorie = await repository.findOne({
+      where: {
+        id,
+      },
+    });
+
+    return categorie;
+  }
 }

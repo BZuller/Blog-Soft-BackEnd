@@ -6,7 +6,6 @@ import {
   Entity,
   Column,
   ManyToOne,
-  OneToMany,
 } from 'typeorm';
 import IPostModel from '../../models/IPostModel';
 import Categories from './Categories.Entity';
@@ -23,8 +22,8 @@ export default class Post implements IPostModel {
   @Column()
   content: string;
 
-  @OneToMany(() => Categories, (categories) => categories.posts)
-  categorie: Categories;
+  @ManyToOne(() => Categories, (categories) => categories.posts)
+  public categorie: Categories;
 
   @ManyToOne(() => User, (user) => user.posts)
   public author: User;
