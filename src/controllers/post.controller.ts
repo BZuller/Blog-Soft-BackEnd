@@ -48,7 +48,7 @@ export default class PostController {
 
       return res.status(StatusCodes.NO_CONTENT).json(post);
     } catch (error: any) {
-      logger.error(`UserController: ${error.message}`);
+      logger.error(`PostController: ${error.message}`);
       return next(error);
     }
   }
@@ -64,7 +64,7 @@ export default class PostController {
 
       return res.json(postsList);
     } catch (error: any) {
-      logger.error(`UserController: ${error.message}`);
+      logger.error(`PostController: ${error.message}`);
       return next(error);
     }
   }
