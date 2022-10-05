@@ -53,7 +53,9 @@ export default class PostRepository implements IPostRepository {
 
   async findPosts(): Promise<Post[]> {
     const postRepository = getRepository(Post);
-    const postsList = await postRepository.find();
+    const postsList = await postRepository.find({
+      relations: ['author', 'categorie'],
+    });
 
     return postsList;
   }

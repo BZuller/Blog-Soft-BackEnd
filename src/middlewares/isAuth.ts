@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
-import { verify } from 'jsonwebtoken';
-import auth from '../config/auth';
+import { Secret, verify } from 'jsonwebtoken';
+import config from '../config/config';
 import ApiError from '../utils/apiError.utils';
 
 export default function isAuth(
@@ -18,7 +18,7 @@ export default function isAuth(
 
   try {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const decodeToken = verify(token, auth.jwt.secret);
+    const decodeToken = verify(token, config.jwtSecret as Secret);
 
     return next();
   } catch {

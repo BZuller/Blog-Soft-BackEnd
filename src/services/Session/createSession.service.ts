@@ -1,8 +1,7 @@
 import { compare } from 'bcrypt';
-import { sign } from 'jsonwebtoken';
-import auth from '../../config/auth';
 import IUserRepository from '../../repositories/interfaces/IUserRepository';
 import ApiError from '../../utils/apiError.utils';
+import { signJwt } from '../../utils/jwt.utils';
 import ICreateSessionRequestDTO from './ICreateSessionRequestDTO';
 import ICreateSessionResponseDTO from './ICreateSessionResponseDTO';
 
@@ -25,10 +24,7 @@ export default class CreateSessionService {
       throw new ApiError(401, true, 'Invalid email or password');
     }
 
-    const token = sign({}, auth.jwt.secret, {
-      subject: user.id,
-      expiresIn: auth.jwt.expiresIn,
-    });
+    const token = signJwt({ sub: user.id });
 
     return { user, token };
   }

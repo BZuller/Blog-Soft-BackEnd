@@ -13,12 +13,12 @@ import 'express-async-errors';
 const app = express();
 
 app.use(express.json());
-routes(app);
 app.use(helmet());
 app.use(compression());
 app.use(cors());
 app.options('*', cors());
 app.use(deserializeUser);
+routes(app);
 
 if (config.env !== environments.PRODUCTION) {
   app.use(morgan('tiny'));
