@@ -7,8 +7,7 @@ export default class CreatePostService {
   public async execute(data: ICreatePostDTO): Promise<string | undefined> {
     const postRepository = getCustomRepository(PostRepository);
     const userRepository = getCustomRepository(UserRepository);
-    const { title, authorId, content, categorieId } = data;
-
+    const { title, content, authorId, categorieId } = data;
     const user = await userRepository.findById(authorId);
     if (!user) {
       throw new Error('This user dont exists');

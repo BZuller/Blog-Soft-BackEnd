@@ -21,7 +21,7 @@ routes
 
 routes
   .route('/')
-  .post((req, res, next) =>
+  .get((req, res, next) =>
     categorieController.getCategoriesHandler(req, res, next)
   );
 

@@ -1,4 +1,5 @@
 import { hash } from 'bcrypt';
+import UserRole from '../../../enums/UserRoles';
 import IUserRepository from '../../../repositories/interfaces/IUserRepository';
 import ApiError from '../../../utils/apiError.utils';
 import ICreateUserDTO from './ICreateUserRequestDTO';
@@ -7,7 +8,7 @@ export default class CreateUserService {
   constructor(private userRepository: IUserRepository) {}
 
   public async execute(data: ICreateUserDTO): Promise<string | undefined> {
-    const { name, email, username, role } = data;
+    const { name, email, username } = data;
     const userExists = await this.userRepository.findByEmail(email);
     const hashedPassword = await hash(data.password, 8);
 
@@ -19,8 +20,9 @@ export default class CreateUserService {
       email,
       username,
       password: hashedPassword,
-      role,
+      role: UserRole.USER,
     });
+
     return newUser;
   }
 }
