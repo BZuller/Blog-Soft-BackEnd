@@ -18,9 +18,13 @@ Caso não tenha ou esteja desatualizado, navegue até o site do nodeJS e baixe a
 
 Mais informações: [site oficial](https://nodejs.org/en/).
 
-### :fire: Iniciando o projeto
+### :fire: Iniciando o projetoClone esse repositório utilizando o comando abaixo no seu terminal:
 
-`$ npm install`
+`$ git clone https://github.com/BZuller/Blog-Soft-BackEnd.git`
+
+Após o processo ser concluído no próprio terminal aberto localize a pasta que você acabou de clonar e dentro dela digite:
+
+`$ yarn install`
 
 Quando concluir a instalação das dependências, abra o projeto no seu editor, crie um arquivo `.env` com as mesmas informações do `.env.example` e peça as infomações com alguém da sua equipe para popular as variáveis.
 
