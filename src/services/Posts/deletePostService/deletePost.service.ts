@@ -1,5 +1,5 @@
 import { getCustomRepository } from 'typeorm';
-import PostRepository from '../../../repositories/implementations/PostRepository';
+import { PostRepository } from '../../../repositories/implementations/PostRepository';
 import IDeletePostRequestDTO from './IDeletePostRequestDTO';
 
 export default class DeletePostService {

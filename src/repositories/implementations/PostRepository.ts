@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { EntityRepository, getRepository } from 'typeorm';
 import Categories from '../../database/entities/Categories.Entity';
 import Post from '../../database/entities/Post.Entity';
@@ -7,7 +8,7 @@ import ApiError from '../../utils/apiError.utils';
 import IPostRepository from '../interfaces/IPostRepository';
 
 @EntityRepository(Post)
-export default class PostRepository implements IPostRepository {
+export class PostRepository implements IPostRepository {
   async createPost(post: ICreatePostDTO): Promise<string | undefined> {
     const postRepository = getRepository(Post);
     const categorieRepository = getRepository(Categories);

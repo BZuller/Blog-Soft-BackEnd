@@ -15,13 +15,13 @@ export default class CreateSessionService {
     const user = await this.userRepository.findByEmail(email);
 
     if (!user) {
-      throw new ApiError(401, true, 'Invalid email or password');
+      throw new ApiError(404, true, 'INVALID_EMAIL');
     }
 
     const validPassword = await compare(password, user.password);
 
     if (!validPassword) {
-      throw new ApiError(401, true, 'Invalid email or password');
+      throw new ApiError(404, true, 'INVALID_PASSWORD');
     }
 
     const token = signJwt({ sub: user.id });

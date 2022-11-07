@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { EntityRepository, getRepository } from 'typeorm';
 import User from '../../database/entities/User.Entity';
 import ICreateUserDTO from '../../services/User/createUserService/ICreateUserRequestDTO';
 import IUserRepository from '../interfaces/IUserRepository';
 
 @EntityRepository(User)
-export default class UserRepository implements IUserRepository {
+export class UserRepository implements IUserRepository {
   async createUser(user: ICreateUserDTO): Promise<string | undefined> {
     const repository = getRepository(User);
     const newUser = repository.create(user);

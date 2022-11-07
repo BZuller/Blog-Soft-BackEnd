@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import CategoriesController from '../../controllers/categories.controller';
-import CategoriesRepository from '../../repositories/implementations/CategorieRepository';
+import { CategoriesRepository } from '../../repositories/implementations/CategorieRepository';
 import CreateCategorieService from '../../services/Categories/createCategorieService/createCategorie.service';
 import GetCategoriesService from '../../services/Categories/getCategoriesService/getCategories.service';
 

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Column, Entity } from 'typeorm';
 import Base from './User.Entity';
 

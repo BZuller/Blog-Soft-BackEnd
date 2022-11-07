@@ -1,6 +1,6 @@
 import { getCustomRepository } from 'typeorm';
-import PostRepository from '../../../repositories/implementations/PostRepository';
-import UserRepository from '../../../repositories/implementations/UserRepository';
+import { PostRepository } from '../../../repositories/implementations/PostRepository';
+import { UserRepository } from '../../../repositories/implementations/UserRepository';
 import ICreatePostDTO from './ICreatePostRequestDTO';
 
 export default class CreatePostService {

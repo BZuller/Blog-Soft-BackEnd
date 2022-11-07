@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import PostController from '../../controllers/post.controller';
 import isAuth from '../../middlewares/isAuth';
-import PostRepository from '../../repositories/implementations/PostRepository';
+import { PostRepository } from '../../repositories/implementations/PostRepository';
 import GetPostsService from '../../services/Posts/getPostsService/getPosts.service';
 
 const routes = Router();

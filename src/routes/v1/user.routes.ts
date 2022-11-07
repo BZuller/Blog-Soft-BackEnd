@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import UserController from '../../controllers/user.controller';
-import UserRepository from '../../repositories/implementations/UserRepository';
+import { UserRepository } from '../../repositories/implementations/UserRepository';
 import CreateUserService from '../../services/User/createUserService/createUser.service';
 // /**
 //  * @openapi

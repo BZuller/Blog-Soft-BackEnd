@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import SessionController from '../../controllers/session.controller';
-import UserRepository from '../../repositories/implementations/UserRepository';
+import { UserRepository } from '../../repositories/implementations/UserRepository';
 import CreateSessionService from '../../services/Session/createSession.service';
 
 const routes = Router();

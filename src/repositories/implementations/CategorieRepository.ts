@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { EntityRepository, getRepository } from 'typeorm';
 import Categories from '../../database/entities/Categories.Entity';
 import ICategories from '../../interfaces/ICategories';
@@ -5,7 +6,7 @@ import ICreateCategorieRequestDTO from '../../services/Categories/createCategori
 import ICategorieRepository from '../interfaces/ICategorieRepository';
 
 @EntityRepository(Categories)
-export default class CategoriesRepository implements ICategorieRepository {
+export class CategoriesRepository implements ICategorieRepository {
   async createCategorie(
     categorie: ICreateCategorieRequestDTO
   ): Promise<string | undefined> {
