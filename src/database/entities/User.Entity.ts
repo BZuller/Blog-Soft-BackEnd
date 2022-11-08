@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable import/no-cycle */
 import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -8,9 +8,7 @@ import {
   OneToMany,
 } from 'typeorm';
 import UserRole from '../../enums/UserRoles';
-// eslint-disable-next-line import/no-cycle
 import IUserModel from '../../models/IUserModel';
-// eslint-disable-next-line import/no-cycle
 import Post from './Post.Entity';
 
 @Entity('users')

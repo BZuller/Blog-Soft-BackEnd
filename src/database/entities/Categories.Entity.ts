@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable import/no-cycle */
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import ICategoriesModel from '../../models/ICategorieModel';

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { EntityRepository, getRepository } from 'typeorm';
 import Categories from '../../database/entities/Categories.Entity';
 import Post from '../../database/entities/Post.Entity';

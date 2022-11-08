@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { EntityRepository, getRepository } from 'typeorm';
 import User from '../../database/entities/User.Entity';
 import ICreateUserDTO from '../../services/User/createUserService/ICreateUserRequestDTO';
